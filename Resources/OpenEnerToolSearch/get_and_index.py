@@ -18,6 +18,8 @@ with open(os.path.join(config.root_dir, "project_list.csv")) as csvfile:
         os.chdir(os.path.join(config.root_dir, "checkout"))
         if not os.path.exists(os.path.join(config.root_dir, "checkout", project)):
             os.system(f"git clone https://{config.github_username}:{config.github_token}@{row[0][8:]}")
+        else:
+            os.system(f"cd {project} && git pull")
 
     write_recoll_config()
     os.chdir(config.root_dir)
